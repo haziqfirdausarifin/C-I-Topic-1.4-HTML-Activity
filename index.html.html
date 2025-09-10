@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<style>
+	
+	table, th, td {
+		border:1px solid black;
+		border-collapse: collapse;
+	}	
+	table {
+		border-spacing: 15px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	td {
+		text-align: left;
+	}
+	.body{
+		display: table;
+		width: 70%;
+		margin: auto;
+		font-family: Arial, sans-serif;
+	}
+	#tableText1, #tableText2, #tableText3 {
+		padding: 20px;
+	}
+	#feedback {
+		display: none; 
+		padding: 5px; 
+		border-style: groove;
+	}
+	#one {
+		padding: 50px;
+	}
+	#submitbutton {
+		border: none;
+		padding: 15px 100px;
+		text-align: center;
+		font-size: 16px;
+		margin: 4px 2px;
+	}
+	#resetbutton {
+		background-color: #58546c;
+		border: none;
+		color: white;
+		padding: 15px 100px;
+		text-align: center;
+		font-size: 16px;
+		margin: 4px 2px;
+		cursor: pointer;
+	}
+	select {
+		height: 30px;
+		border: none;
+		font-family:inherit;
+		font-size:inherit;
+		background-color: #E8E8E8;
+	}
+	@media only screen and (max-width: 760px), (min-width: 768px) and (max-width: 1024px) {
+	#submitbutton {
+		border: none;
+		padding: 15px;
+		text-align: center;
+		font-size: 16px;
+		margin: 4px 2px;
+		width: 100%;
+	}
+	#resetbutton {
+		background-color: #58546c;
+		border: none;
+		color: white;
+		padding: 15px;
+		text-align: center;
+		font-size: 16px;
+		margin: 4px 2px;
+		cursor: pointer;
+		width: 100%;
+	}
+}
+
+	
+</style>
+<head>
+<meta charset="utf-8">
+<title>Fill-in The Gap Activity</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+
+<body>	
+	
+	<br>
+	<div class="col-md-12">
+	<div class="body">
+	<form name="checkit1" id="form"> 
+	<div style="overflow-x:auto;">
+	<table>
+    <tr>
+		<div id="select1">
+		<td id="tableText1">In many programmes, the   		
+			<select id="ddlTrueFalse1" onInput="checkform()">
+				<option hidden disabled selected value></option>
+				<option value="ao">aims and objectives</option>
+				<option value="aims">aims</option>
+				<option value="objectives">objectives</option>
+				<option value="prerequisite">prerequisite</option>
+			</select>
+			are designed to determine the content knowledge and skills that the graduate of the programme must achieve. </td>
+		</div>
+	</tr>
+	<tr>
+		<div id="select2">
+		<td id="tableText2">The
+			<select id="ddlTrueFalse2" onInput="checkform()">
+				<option hidden disabled selected value></option>
+				<option value="objectives">objectives</option>
+				<option value="learning">learning outcomes</option>
+				<option value="assessment">assessment</option>
+				<option value="aims">aims</option>
+			</select>
+			of a programme are not measurable nor observable.
+		</td>
+		</div>
+	</tr>
+	<tr>
+		<div id="select3">
+		<td id="tableText3">The 
+			<select id="ddlTrueFalse3" onInput="checkform()">
+				<option hidden disabled selected value></option>
+				<option value="aims">aims</option>
+				<option value="objectives">objectives</option>
+				<option value="learning">learning outcomes</option>
+				<option value="assessment">assessment</option>
+			</select>
+			of a programme are measurable and observable. 
+		</td>
+		</div>
+    </tr>
+	</table>
+	</div>
+	</form>
+	</div>
+	</div>
+	
+	<div id="one" style="font-family: Arial, sans-serif;">
+			<div id="feedback">
+				<br>
+				<b>General Feedback</b>
+				<br><br>
+				The term ‘aims’ are used to describe a larger purpose of a curriculum while ‘objectives’ are more explicitly written goals. Aims are written in generic terms of vocabulary such as aware, realise, understand, appreciate, or value. Objectives encompass on what the student should be able to do after the learning experience. 			</div>
+			<br>
+			<div id="buttons">
+			<button id="submitbutton" disabled onClick="showDiv()">Submit</button>
+			<button type="reset" id="resetbutton" hidden  onClick="window.location.reload();">Reset and try again</button>
+			</div>
+			
+			<br><br>
+			</div>
+	
+	
+<script>
+function checkform() {
+	var f = document.forms["checkit1"].elements;
+	var cansubmit = true;
+
+	for (var i = 0; i < f.length; i++) {
+		if (f[i].value.length == 0) {
+		  cansubmit = false;
+		}
+	}
+	if (cansubmit) {
+		document.getElementById('submitbutton').disabled = !cansubmit;
+		document.getElementById('submitbutton').style.backgroundColor = "#58546c";
+		document.getElementById('submitbutton').style.color = "white";
+		document.getElementById('submitbutton').style.cursor = "pointer";
+	}
+};
+
+</script>
+
+<script>
+
+function showDiv() {
+	div = document.getElementById('feedback');
+	div.style.display = "block";
+
+	div1 = document.getElementById('resetbutton');
+	div1.removeAttribute("hidden");
+	
+	document.getElementById('submitbutton').disabled = true;
+	document.getElementById('submitbutton').style.backgroundColor = "";
+	document.getElementById('submitbutton').style.color = "";
+	document.getElementById('submitbutton').style.cursor = "";
+	
+	var e = document.getElementById("ddlTrueFalse1");
+	var value = e.value;
+	if (e.value == "ao") {
+		document.getElementById("ddlTrueFalse1").style.borderStyle = "solid";
+		document.getElementById("ddlTrueFalse1").style.borderWidth = "medium";
+		document.getElementById("ddlTrueFalse1").style.borderColor = "#2ECC71";
+	} else {
+		document.getElementById("ddlTrueFalse1").style.borderStyle = "solid";
+		document.getElementById("ddlTrueFalse1").style.borderWidth = "medium";
+		document.getElementById("ddlTrueFalse1").style.borderColor = "red";
+	}
+
+	var e = document.getElementById("ddlTrueFalse2");
+	var value = e.value;
+	if (e.value == "aims") {
+		document.getElementById("ddlTrueFalse2").style.borderStyle = "solid";
+		document.getElementById("ddlTrueFalse2").style.borderWidth = "medium";
+		document.getElementById("ddlTrueFalse2").style.borderColor = "#2ECC71";
+	} else {
+		document.getElementById("ddlTrueFalse2").style.borderStyle = "solid";
+		document.getElementById("ddlTrueFalse2").style.borderWidth = "medium";
+		document.getElementById("ddlTrueFalse2").style.borderColor = "red";
+	}
+
+	var e = document.getElementById("ddlTrueFalse3");
+	var value = e.value;
+	if (e.value == "objectives") {
+		document.getElementById("ddlTrueFalse3").style.borderStyle = "solid";
+		document.getElementById("ddlTrueFalse3").style.borderWidth = "medium";
+		document.getElementById("ddlTrueFalse3").style.borderColor = "#2ECC71";
+	} else {
+		document.getElementById("ddlTrueFalse3").style.borderStyle = "solid";
+		document.getElementById("ddlTrueFalse3").style.borderWidth = "medium";
+		document.getElementById("ddlTrueFalse3").style.borderColor = "red";
+	}
+	
+
+}
+</script>
+<script>
+
+const reloadButton = document.querySelector("#reload");
+// Reload everything:
+function reload() {
+    reload = location.reload();
+}
+
+reloadButton.addEventListener("click", reload, false);
+
+	
+</script>
+</body>
+</html>
